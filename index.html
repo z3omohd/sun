@@ -72,26 +72,26 @@
  <circle r="6" fill="#fef08a" />
  </g>
 
- <!-- Solstices & Equinox Markers -->
- <!-- Autumn Equinox: Sep 23 at Top (160, 20) -->
+ <!-- Solstices & Equinox Markers (Updated Positions) -->
+ <!-- Summer Solstice (Cancer): Jun 21 at Top (160, 20) -->
  <g transform="translate(160, 20)">
- <circle r="5" fill="#ea580c" opacity="0.8"/>
- <text x="14" y="3" fill="#fb923c" font-size="8" font-weight="600" text-anchor="start">Sep 23</text>
- </g>
- <!-- Winter Solstice: Dec 22 at Right (295, 65) -->
- <g transform="translate(295, 65)">
- <circle r="5" fill="#2563eb" opacity="0.8"/>
- <text x="0" y="20" fill="#60a5fa" font-size="8" font-weight="600" text-anchor="middle">Dec 22</text>
- </g>
- <!-- Vernal Equinox: Mar 21 at Bottom (160, 110) -->
- <g transform="translate(160, 110)">
- <circle r="5" fill="#059669" opacity="0.8"/>
- <text x="-14" y="3" fill="#34d399" font-size="8" font-weight="600" text-anchor="end">Mar 21</text>
- </g>
- <!-- Summer Solstice: Jun 21 at Left (25, 65) -->
- <g transform="translate(25, 65)">
  <circle r="5" fill="#f59e0b" opacity="0.8"/>
- <text x="0" y="20" fill="#f59e0b" font-size="8" font-weight="600" text-anchor="middle">Jun 21</text>
+ <text x="14" y="3" fill="#fcd34d" font-size="8" font-weight="600" text-anchor="start">Jun 21</text>
+ </g>
+ <!-- Autumn Equinox: Sep 23 at Right (295, 65) -->
+ <g transform="translate(295, 65)">
+ <circle r="5" fill="#ea580c" opacity="0.8"/>
+ <text x="0" y="20" fill="#fb923c" font-size="8" font-weight="600" text-anchor="middle">Sep 23</text>
+ </g>
+ <!-- Winter Solstice (Capricorn): Dec 22 at Bottom (160, 110) -->
+ <g transform="translate(160, 110)">
+ <circle r="5" fill="#2563eb" opacity="0.8"/>
+ <text x="-14" y="3" fill="#60a5fa" font-size="8" font-weight="600" text-anchor="end">Dec 22</text>
+ </g>
+ <!-- Vernal Equinox: Mar 21 at Left (25, 65) -->
+ <g transform="translate(25, 65)">
+ <circle r="5" fill="#059669" opacity="0.8"/>
+ <text x="0" y="20" fill="#34d399" font-size="8" font-weight="600" text-anchor="middle">Mar 21</text>
  </g>
 
  <!-- Dynamic Earth Orbit Marker -->
@@ -142,7 +142,7 @@
  </div>
 
  <script>
- let currentDate = new Date(); // Default Sep 20, 2026
+ let currentDate = new Date(); // Default starts with today
  const salaryDay = 27; // Fixed salary day each month
  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -166,11 +166,9 @@
 
  dayOfYearTextEl.textContent = `Day ${dayOfYear} of ${year}`;
 
- // Autumn Equinox is approximately Day 266 (Sept 23) which corresponds to top of ellipse (angle = -PI/2)
- // Day 266 -> -PI/2
- // We map dayOfYear to angle such that Sep 23 is at top (160, 20).
- const autumnEquinoxDay = isLeap ? 267 : 266;
- const dayOffset = dayOfYear - autumnEquinoxDay;
+ // Updated Math: Summer Solstice (Cancer) is approx Day 172 (Jun 21) -> Top of ellipse (angle = -PI/2)
+ const summerSolsticeDay = isLeap ? 173 : 172;
+ const dayOffset = dayOfYear - summerSolsticeDay;
  const angle = -Math.PI / 2 + (dayOffset / totalDays) * 2 * Math.PI;
 
  // Ellipse center (160, 65) with rx = 135, ry = 45
