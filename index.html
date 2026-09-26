@@ -51,12 +51,8 @@
  <span id="dayOfYearText" class="text-[11px] font-medium text-slate-400 bg-white/5 px-2.5 py-0.5 rounded-lg border border-white/5">Day 263</span>
  </div>
  
- <!-- Elliptical Orbit Graphic Container -->
- <div class="relative w-full h-36 flex items-center justify-center my-1">
- <!-- Live Active Position Badge -->
- <div id="orbitBadge" class="absolute top-0 bg-amber-500 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-md shadow-lg shadow-amber-500/30 flex items-center gap-1 z-10 transition-all duration-300">
- <span id="badgeText"> Sep 20 Active</span>
- </div>
+ <!-- Elliptical Orbit Graphic Container (Added z-20 to prevent overlapping) -->
+ <div class="relative w-full h-36 flex items-center justify-center my-1 z-20">
 
  <svg class="w-full h-full" viewBox="0 0 320 130">
  <!-- Outer Elliptical Orbit Path (Center at 160, 65) -->
@@ -72,7 +68,7 @@
  <circle r="6" fill="#fef08a" />
  </g>
 
- <!-- Solstices & Equinox Markers (Updated Positions) -->
+ <!-- Solstices & Equinox Markers -->
  <!-- Summer Solstice (Cancer): Jun 21 at Top (160, 20) -->
  <g transform="translate(160, 20)">
  <circle r="5" fill="#f59e0b" opacity="0.8"/>
@@ -152,8 +148,6 @@
  const salaryCountdownTextEl = document.getElementById('salaryCountdownText');
  const salaryDateTextEl = document.getElementById('salaryDateText');
  const dayOfYearTextEl = document.getElementById('dayOfYearText');
- const badgeTextEl = document.getElementById('badgeText');
- const orbitBadgeEl = document.getElementById('orbitBadge');
  const dynamicEarthEl = document.getElementById('dynamicEarth');
 
  function updateEllipticalOrbit(date) {
@@ -182,12 +176,6 @@
 
  // Update Earth SVG group position
  dynamicEarthEl.setAttribute('transform', `translate(${x.toFixed(1)}, ${y.toFixed(1)})`);
-
- // Position badge near Earth
- const badgeX = Math.min(Math.max(x - 35, 10), 240);
- const badgeY = y < 65 ? Math.max(y - 32, 5) : Math.min(y + 12, 95);
- orbitBadgeEl.style.left = `${badgeX}px`;
- orbitBadgeEl.style.top = `${badgeY}px`;
  }
 
  function renderCalendar() {
@@ -211,8 +199,6 @@
  } else {
  salaryCountdownTextEl.textContent = `Salary Deposited`;
  }
-
- badgeTextEl.textContent = ` ${monthNames[month].slice(0, 3)} ${currentDayNum}`;
 
  daysGridEl.innerHTML = '';
 
